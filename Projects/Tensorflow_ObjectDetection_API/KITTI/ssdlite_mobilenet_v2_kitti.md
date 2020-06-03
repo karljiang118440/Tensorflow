@@ -51,11 +51,12 @@ export PYTHONPATH=$PYTHONPATH:/home/jcq/models-master/research/:/home/jcq/models
 
     python object_detection/dataset_tools/create_kitti_tf_record.py \
         --data_dir=/media/jcq/Doc/DL_data/KITTI \
-        --output_path=/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/kitti.record \
-        --label_map_path=/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/kitti_label_map.pbtxt
+        --output_path=/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/data \
+        --label_map_path=/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/kitti_label_map.pbtxt \
+        --validation_set_size=500
 
-
- ## train 的数据集没问题，但是eval 数据集不对啊，为0
+ ## train 的数据集没问题，但是eval 数据集不对啊，为0.
+  -> 修改指令，原先指令有问题，out
 
 
 
@@ -78,17 +79,12 @@ export PYTHONPATH=$PYTHONPATH:/home/jcq/models-master/research/:/home/jcq/models
 
 
 
-python object_detection/model_main.py \
-        --logtostderr \
-        --pipeline_config_path=/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/config/ssdlite_mobilenet_v2_coco.config \
-        --train_dir=/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/models
-
 
 
 ## 3.1 、tensorboard 查看结果
 
 
-tensorboard --logdir='/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/20200507/model_0601'
+tensorboard --logdir='/media/jcq/Soft/Tensorflow/Tensorflow_ObjectDetection_API/KITTI/models'
 
 
 ## 3.2、断点续训功能，只修修改 config 文件中的 num_steps 即可继续训练
